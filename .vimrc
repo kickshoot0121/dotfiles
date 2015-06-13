@@ -22,8 +22,8 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'marcus/rsense'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
+"NeoBundle 'marcus/rsense'
+"NeoBundle 'supermomonga/neocomplete-rsense.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/nerdtree' " ツリー型エクスプローラー
 NeoBundle 'scrooloose/syntastic' " シンタックスチェック
@@ -112,8 +112,8 @@ set statusline+=%{fugitive#statusline()} "ステータス行に現在のgitブ�
 
 
 "## plugin:Rsense個別設定 ##
-let g:rsenseHome = '/usr/local/lib/rsense-0.3'
-let g:rsenseUseOmniFunc = 1
+"let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+"let g:rsenseUseOmniFunc = 1
 
 
 " neocomplete.vim
