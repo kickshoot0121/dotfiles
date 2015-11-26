@@ -7,10 +7,14 @@ if has('vim_starting')
   filetype indent off
   execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
 endif
-call neobundle#rc(expand('~/.vim/bundle'))
 
+
+" neobundle.vimの初期化 
+" NeoBundleを更新するための設定
+call neobundle#begin(expand('~/.vim/bundle'))
+let g:neobundle_default_git_protocol='https'  " proxy
+NeoBundleFetch 'Shougo/neobundle.vim'
 " プラグインのバンドル
-NeoBundle 'Shougo/neobundle.vim' " プラグイン管理
 NeoBundle 'Shougo/vimproc', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
@@ -35,7 +39,8 @@ NeoBundle 'jistr/vim-nerdtree-tabs' "NERDTreeの拡張
 NeoBundle 'thinca/vim-ref' " ドキュメント参照
 NeoBundle 'yuku-t/vim-ref-ri' " ドキュメント参照
 NeoBundle 'szw/vim-tags' "メソッド定義元へのジャンプ
-
+NeoBundle 'w0ng/vim-hybrid' "color schema
+call neobundle#end()
 
 " プラグインの有効化とvim起動時の更新チェック
 filetype indent on
@@ -55,7 +60,7 @@ set showmode " 現在のモードを表示
 set hidden " 変更中のファイルでも、保存しないで他のファイルを表示
 set title " ファイル名を表示
 "set list " 不可視文字を表示
-"set listchars=tab:»-,trail:-,extends:»,precedes:«   " 不可視文字の表示設定
+"set listchars=tab:?-,trail:-,extends:?,precedes:?   " 不可視文字の表示設定
 set infercase  " 補完の際の大文字小文字の区別しない
 set scrolloff=5 " ファイルの末尾の途中でスクロールする
 set laststatus=2 " ステータスを複数行にする
@@ -96,6 +101,13 @@ function! s:mkdir(dir, force)
     call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
   endif
 endfunction
+
+set undofile                " undo ファイルを保管する。
+set undodir=$HOME/.vim/undo " undo ファイルの保管場所を指定する。 TODO:手動で作らないで済ませられないか
+set undolevels=1000         " undoの保持件数
+set undoreload=10000        " 
+set backupdir=$HOME/.vim/backup 
+set formatoptions=q
 
 "## plugin:NERDTree の個別設定 ##
 "autocmd VimEnter  *  NERDTree " vim起動時にNERDTreeも起動する
@@ -138,3 +150,4 @@ let g:syntastic_ruby_checkers = ['rubocop']
 " #実行環境との差異が好ましくないため削除
 "noremap ;  :
 "noremap :  ;
+
